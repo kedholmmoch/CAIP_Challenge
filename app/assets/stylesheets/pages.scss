@@ -1,8 +1,48 @@
 .page {
 
-  &__header {
+  height: 1048px;
+  width: 1440px;
+
+  display: flex;
+  flex-direction: column;
+
+  .name__header {
+    min-height: 70px;
+    background-color: $white;
+
+    border-bottom: 1px solid $mid-gray;
+    padding-left: $base-spacing;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+
+    .name__container {
+      min-height: 40px;
+      min-width: 810px;
+      box-sizing: border-box;
+    }
+  }
+
+  .search__header {
     background: $white;
-    height: 100px;
-    padding: $base-spacing;
+    min-height: 175px;
+    box-shadow: 0px 5px 10px rgba(104, 146, 255, 0.25);
+    
+    padding-left: 120px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+
+    .search__container {
+      min-height: 40px;
+      min-width: 200px;
+    }
+  }
+
+  footer {
+    min-height: 134px;
+    background: $dark-purple;
   }
 }
