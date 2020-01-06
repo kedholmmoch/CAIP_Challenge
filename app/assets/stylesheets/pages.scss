@@ -5,9 +5,11 @@
 
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   .name__header {
     min-height: 70px;
+    width: 100%;
     background-color: $white;
 
     border-bottom: 1px solid $mid-gray;
@@ -27,6 +29,7 @@
   .search__header {
     background: $white;
     min-height: 175px;
+    width: 100%;
     box-shadow: 0px 5px 10px rgba(104, 146, 255, 0.25);
     
     padding-left: 120px;
@@ -41,8 +44,14 @@
     }
   }
 
+  .tabs {
+    min-height: 669px;
+    width: 960px;
+  }
+
   footer {
     min-height: 134px;
+    width: 100%;
     background: $dark-purple;
   }
 }

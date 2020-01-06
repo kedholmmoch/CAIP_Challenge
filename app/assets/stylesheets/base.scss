@@ -61,17 +61,31 @@ h3 {
   border-bottom: 3px solid #a6afbe;
   display: flex;
   margin: auto;
-  margin-bottom: $base-spacing;
-  padding: 0 $small-spacing;
+  margin-bottom: 13px;
+  margin-top: 20px;
+  // padding: 0 $small-spacing;
+  height: 70px;
+  // width: 960px;
+  box-sizing: border-box;
 
   .tab-menu__item {
     cursor: pointer;
     font-size: 14px;
+    // line-height: 14px;
     font-weight: 300;
-    text-align: center;
+    width: 225px;
+    height: 100%;
+    text-align: left;
     text-transform: uppercase;
     margin-right: $base-spacing;
-    padding: $small-spacing 0;
+    // padding: $small-spacing 0;
+    padding-top: 21px;
+    padding-bottom: 19px;
+    padding-left: $small-spacing;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    // vertical-align: middle;
 
     &.selected {
       font-weight: 600;
