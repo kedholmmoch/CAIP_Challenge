@@ -15,4 +15,7 @@
 //= require turbolinks
 //= require jquery
 //= require tab-menu.js
+//= require accordion.js
+//= require search-filter.js
+//= require bar-chart.js
 //= require_tree .

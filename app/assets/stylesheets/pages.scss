@@ -122,6 +122,10 @@
   .result__item {
     border-top: 1px solid $mid-gray;
     // max-height: 450px;
+
+    &.hidden {
+      display: none;
+    }
   }
 
   .result__main {
@@ -163,15 +167,30 @@
   }
 
   .chevron {
+    pointer-events: none;
     position: absolute;
     top: 0px;
     left: 0px;
+
+    &.rotated {
+      transform: rotate(180deg);
+      pointer-events: auto;
+    }
+
   }
 
   .result__addition {
     padding: 0px 23px 40px 32px;
     display: flex;
     flex-direction: column;
+
+    &.hidden {
+      display: none;
+
+      &.displayed {
+        display: flex;
+      }
+    }
 
     .description__container {
       display: flex;
