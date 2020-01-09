@@ -60,9 +60,9 @@ $( () => {
   // event handler to clear search bar and restore results upon clicking 'Reset'
   $resetButton.on('click', (event) => {
     event.preventDefault();
-    $searchBar.val('');
-    $searchDisplay.text('');
-    showAllResults();
+    $searchBar.val('Ruby on Rails');
+    $searchDisplay.text('Ruby on Rails');
+    filterResults('Ruby on Rails');
   });
 
   // event handler to filter results on clicking 'Search'

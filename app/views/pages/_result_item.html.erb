@@ -20,8 +20,12 @@
 
   <div class="result__addition hidden" id="description__<%= idx.to_s %>">
     <div class="description__container">
-      <img class="thumbnail" 
-        src="<%= video["snippet"]["thumbnails"]["medium"]["url"] %>">
+      <div>
+        <a href="https://www.youtube.com/watch?v=<%=video["id"]["videoId"]%>">
+          <img class="thumbnail" 
+            src="<%= video["snippet"]["thumbnails"]["medium"]["url"] %>">
+        </a>
+      </div>
       <div>
         <div class="heading">Description</div>
         <div class="basetext"><%= video["snippet"]["description"] %></div>
