@@ -28,9 +28,9 @@ $( () => {
     svg.attr('width', width);
     svg.attr('height', height);
   
-    const chart = svg.append('g').attr(
-      'transform', `translate(${marginLeft}, ${marginTop})`
-    );
+    const chart = svg.append('g')
+      .attr("class", "chart")
+      .attr('transform', `translate(${marginLeft}, ${marginTop})`);
 
     // gathering data
     var data = [];
@@ -59,16 +59,10 @@ $( () => {
         data.push(obj);
       }
     });
-    
-    // creating stacked data
-
-    // let stackdata = ["viewCount", "likeCount"]
-
 
     // creating x- and y- axes
     const maxDomain = function(array) {
       let totals = array.map(obj => obj.viewCount + obj.likeCount);
-      console.log(totals);
       return Math.max(...totals);
     }
 
@@ -82,9 +76,7 @@ $( () => {
       .domain([0, maxDomain(data)]);
 
     var xAxis = d3.axisBottom(x);
-
     var yAxis = d3.axisLeft(y)
-      .ticks(13);
 
     chart.append('g')
         .attr('transform', `translate(0, ${chartHeight})`)
@@ -97,17 +89,123 @@ $( () => {
 
     chart.append('g').call(yAxis);
 
-    console.log(data);
 
-    svg.selectAll(".bar")
+    // hovering div
+    var div = d3.select("#svg__container")
+      .append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0);
+
+    // creating views bars
+    svg.selectAll(".views__bar")
       .data(data)
       .enter().append("rect")
-      .attr("class", "bar")
+      .style("fill", "#64AEFF")
+      .attr("class", "views__bar")
       .attr("x", function (d) { return x(d.title) + marginLeft; })
       .attr("width", x.bandwidth())
       .attr("y", function (d) { return y(d.viewCount) + marginTop; })
-      .attr("height", function (d) { return chartHeight - y(d.viewCount); });
+      .attr("height", function (d) { return chartHeight - y(d.viewCount); })
+      .attr("datamsg", function (d) { 
+        return `Views: ${ d.viewCount }<br/>Likes: ${ d.likeCount }`
+      })
+      .on("mouseover", function(d, i) {
+        d3.select(this).transition()
+          .duration(100)
+          .attr('opacity', '.95')
 
+        let msg = d3.select(this).attr('datamsg');
+
+        div.html(msg)
+          .style("left", `${d3.event.pageX - 220}px`)
+          .style("top", `${d3.event.pageY - 390}px`);
+        div.transition()
+          .duration(50)
+          .style("opacity", .8);
+      })
+      .on('mouseout', function (d, i) {
+        d3.select(this).transition()
+          .duration('50')
+          .attr('opacity', '1');
+
+        div.transition()
+          .duration('50')
+          .style("opacity", 0);
+      });
+
+    // creating likes bars
+    svg.selectAll(".likes__bar")
+      .data(data)
+      .enter().append("rect")
+      .style("fill", "#AED5FF")
+      .attr("class", "likes__bar")
+      .attr("x", function (d) { return x(d.title) + marginLeft; })
+      .attr("width", x.bandwidth())
+      .attr("y", function (d) { return marginTop + y(d.viewCount); })
+      .attr("height", function (d) { return chartHeight - y(d.likeCount); })
+      .attr("datamsg", function (d) { 
+        return `Views: ${ d.viewCount }<br/>Likes: ${ d.likeCount }`
+      })
+      .on("mouseover", function (d, i) {
+        d3.select(this).transition()
+          .duration(100)
+          .attr('opacity', '.95')
+
+        let msg = d3.select(this).attr('datamsg');
+
+        div.html(msg)
+          .style("left", `${d3.event.pageX - 220}px`)
+          .style("top", `${d3.event.pageY - 390}px`);
+        div.transition()
+          .duration(50)
+          .style("opacity", .8);
+      })
+      .on('mouseout', function (d, i) {
+        d3.select(this).transition()
+          .duration('50')
+          .attr('opacity', '1');
+
+        div.transition()
+          .duration('50')
+          .style("opacity", 0);
+      });
+
+    
+    // horizontal grid lines for effect
+    chart.append('g')
+      .attr("class", "grid")
+      .call(d3.axisLeft()
+        .scale(y)
+        .tickSize(-chartWidth, 0, 0)
+        .tickFormat(''));
+
+    // draw legend
+    let legend = svg.selectAll(".legend")
+      .data(["#64AEFF", "#AED5FF"])
+      .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function (d, i) { return `translate(${(i * 126)}, 0)`});
+
+    legend.append("rect")
+      .attr("x", 351)
+      .attr("y", chartHeight + marginTop + 64)
+      .attr("width", 20)
+      .attr("height", 20)
+      .style("fill", function (d, i) { return ["#64AEFF", "#AED5FF"][i]; });
+
+    legend.append("text")
+      .attr("x", 351 + 20 + 5)
+      .attr("class", "basetext")
+      .attr("y", chartHeight + marginTop + 75)
+      .attr("dy", ".35em")
+      .style("text-anchor", "start")
+      .text(function (d, i) {
+        switch (i) {
+          case 0: return "View Count";
+          case 1: return "Like Count";
+        }
+      });
+    
   });
 
 });

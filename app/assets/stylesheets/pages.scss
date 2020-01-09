@@ -247,8 +247,34 @@
     line-height: 17px;
     color: $black;
     white-space: pre-line;
-    // text-overflow: ellipsis;
-    // overflow: hidden;
+  }
+
+  #svg__container {
+    position: relative;
+  }
+
+  div.tooltip {
+    position: absolute;
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 11.5px;
+    text-align: center;
+    padding: .5rem;
+    background: $light-gray;
+    color: $dark-blue;
+    border: 1px solid $dark-blue;
+    border-radius: 5px;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .grid .tick {
+    stroke: l#e6e6e6;
+    opacity: 0.3;
+  }
+
+  .grid path {
+    stroke-width: 0;
   }
 
   footer {
