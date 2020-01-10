@@ -1,0 +1,49 @@
+<div class="result__item" id='result__<%= idx.to_s %>'>
+
+  <div class="result__main">
+    <div class="chevron" id='chevron__<%= idx.to_s %>'> 
+      <%= image_tag 'Chevron-DOWN_Large.svg' %> 
+    </div>
+
+    <div class="result__title">
+      <%= video["snippet"]["title"] %>
+    </div>
+
+    <div class="result__channel">
+      <%= video["snippet"]["channelTitle"] %>
+    </div>
+
+    <div class="result__published">
+      <%= Date.parse(video["snippet"]["publishedAt"]).strftime("%B %e, %Y")%>
+    </div>
+  </div>
+
+  <div class="result__addition hidden" id="description__<%= idx.to_s %>">
+    <div class="description__container">
+      <div>
+        <a href="https://www.youtube.com/watch?v=<%=video["id"]["videoId"]%>">
+          <img class="thumbnail" 
+            src="<%= video["snippet"]["thumbnails"]["medium"]["url"] %>">
+        </a>
+      </div>
+      <div>
+        <div class="heading">Description</div>
+        <div class="basetext"><%= video["snippet"]["description"] %></div>
+      </div>
+    </div>
+    <div class="stats__container">
+      <div class="view__count">
+        <div class="heading">View Count</div>
+        <div class="basetext"><%= video["statistics"]["viewCount"] %></div>
+      </div>
+      <div class="like__count">
+        <div class="heading">Like Count</div>
+        <div class="basetext"><%= video["statistics"]["likeCount"] %></div>
+      </div>
+      <div class="tags__list">
+        <div class="heading">Tags</div>
+        <div class="basetext"><%= video["snippet"]["tags"].join(', ') %></div>
+      </div>
+    </div>
+  </div>
+</div>

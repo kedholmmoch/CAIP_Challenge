@@ -1,25 +1,35 @@
 <div class="page">
-  <div class="page__header">
-    Page
+
+  <div class="name__header">
+    <div class="name__container">
+      <h3>
+        <%= link_to 'Kevin Edholm Moch', '/' %>
+      </h3>
+    </div>
+  </div>
+  
+  <div class="search__header">
+    <div class="search__container">
+      <h3 id="search__display">
+        Search
+      </h3>
+    </div>
   </div>
 
   <div class="tabs">
     <div class="tab-menu">
-      <div class="tab-menu__item selected" target="#page1">Page 1</div>
-      <div class="tab-menu__item" target="#page2">Page 2</div>
+      <div class="tab-menu__item selected" target="#page1">Accordion</div>
+      <div class="tab-menu__item" target="#page2">Graph</div>
     </div>
   
     <div class="tab-content " id="page1">
-      <div class="card box-shadow">
-        <%= @videos %>
-      </div>
+      <%= render 'page1' %>
     </div>
   
     <div class="tab-content hidden" id="page2">
-      <div class="card box-shadow">
-        page2
-      </div>
+      <%= render 'page2' %>
     </div>
   </div>
 
+  <footer></footer>
 </div>

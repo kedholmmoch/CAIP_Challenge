@@ -1,6 +1,8 @@
+require 'json'
+
 class YoutubeInteractor
 
-  KEY = 
+  KEY = 'AIzaSyCd_qIWPS2LZuyR0CZgvpPEn2eCTfQ0MTI'
   BASE_URI = 'https://www.googleapis.com/youtube/v3/'.freeze
 
   def initialize(query = '', ids = [])
@@ -16,5 +18,6 @@ class YoutubeInteractor
     _url = "#{BASE_URI}videos?part=#{fields}&key=#{KEY}&id=#{@ids.join(',')}"
     res = HTTParty.get(_url).body
     JSON.parse(res)
+    # JSON.pretty_generate(res)
   end
 end
