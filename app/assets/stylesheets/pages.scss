@@ -62,8 +62,6 @@
     width: 16px;
     height: 16px;
     background: url('../images/search.png');
-    // background: #656B75;
-    // font-size: 15px;
   }
 
   .query__container {
@@ -121,7 +119,6 @@
 
   .result__item {
     border-top: 1px solid $mid-gray;
-    // max-height: 450px;
 
     &.hidden {
       display: none;
@@ -196,7 +193,6 @@
       display: flex;
       flex-direction: row;
       margin-bottom: 18px;
-      // max-height: 280px;
 
       .thumbnail {
         height: 115px;
@@ -224,7 +220,6 @@
       .tags__list {
         max-width: 436px;
       }
-
     }
   }
 

@@ -1,6 +1,6 @@
 $( () => {  
   
-  // callback to close addt'l info when chevron clicked - called in openAccordion 
+  // callback to close addt'l info on clocking chevron
   const closeAccordion = function (description, chevron) {
 
     description.removeClass('displayed');
@@ -9,7 +9,7 @@ $( () => {
     event.stopPropagation();
   };
 
-  // callback to open addt'l info when line item clicked - event handler below
+  // callback to open addt'l info when line item clicked
   const openAccordion = function () {
 
     const $displayed = $(event.currentTarget).find('.displayed');
@@ -34,5 +34,4 @@ $( () => {
   
   // main event handler to open addt'l info when line item is clicked
   $('#search__results').on('click', '.result__item', openAccordion);
-
 });

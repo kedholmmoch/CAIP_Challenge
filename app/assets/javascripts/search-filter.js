@@ -1,6 +1,6 @@
 $( () => {
 
-  // function to show all results upon filter reset -- called in filterResults
+  // fx to show all results upon filter reset
   const showAllResults = function() {
 
     let $videos = $('.result__item');
@@ -11,17 +11,16 @@ $( () => {
     });
   };
 
-  // callback to filter results upon clicking 'Search' or hitting enter
+  // callback to filter results upon clicking 'Search'/hitting enter
   const filterResults = function(query) {
 
-    let $videos = $('.result__item');
     showAllResults();                       // remove previous filters
     
     if (query === '') return;               // no filter, show all
 
     let queryTerms = query.toLowerCase().split(" ");
 
-    // cb to test a single term's presence in video info in below each loop
+    // cb to test a single term's presence in video info
     const containsQuery = function(video, queryTerm) {
       const $title = $(video).find('.result__title').text().toLowerCase();
       if ($title.includes(queryTerm)) return true;
@@ -36,6 +35,8 @@ $( () => {
       return false;
     }
     
+    let $videos = $('.result__item');
+
     // hide videos that do not contains all search terms
     $videos.each((_, video) => {
       if (queryTerms.some(queryTerm => !containsQuery(video, queryTerm))) {
@@ -57,7 +58,7 @@ $( () => {
     $searchDisplay.text(query);
   });
 
-  // event handler to clear search bar and restore results upon clicking 'Reset'
+  // event handler to clear search bar and restore results on clicking 'Reset'
   $resetButton.on('click', (event) => {
     event.preventDefault();
     $searchBar.val('Ruby on Rails');

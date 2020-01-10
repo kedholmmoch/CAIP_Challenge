@@ -90,7 +90,7 @@ $( () => {
     chart.append('g').call(yAxis);
 
 
-    // hovering div
+    // hovering tooltip div
     var div = d3.select("#svg__container")
       .append("div")
       .attr("class", "tooltip")
@@ -169,7 +169,6 @@ $( () => {
           .duration('50')
           .style("opacity", 0);
       });
-
     
     // horizontal grid lines for effect
     chart.append('g')
@@ -205,7 +204,6 @@ $( () => {
           case 1: return "Like Count";
         }
       });
-    
   });
 
 });
